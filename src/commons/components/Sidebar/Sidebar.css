@@ -1,0 +1,10 @@
+.SidebarContainer {
+    display: flex;
+    height: 100%;
+    padding: 25px;
+}
+
+.left-page {
+    flex: 4;
+  
+}
