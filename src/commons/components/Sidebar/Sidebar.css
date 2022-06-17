@@ -8,3 +8,6 @@
     flex: 4;
   
 }
+ul > li {
+    padding-top: 15px;
+}
