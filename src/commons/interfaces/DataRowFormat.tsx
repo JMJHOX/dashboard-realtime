@@ -6,10 +6,7 @@ export interface dataRowFormat {
   protein: number;
 }
 
-export interface dataRowFormat{
-    data : dataRowFormat[]
-  }
-  
+
 export interface dataApi {
   name: string;
   latin_name: string;

@@ -7,12 +7,8 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { dataRowFormat } from "../../../interfaces/DataRowFormat";
 
-
-
-
 export default function BasicTable(props: { rows: dataRowFormat[] }) {
-  const rows = props.rows;
-
+  let rows: dataRowFormat[] = props.rows;
 
   return (
     <TableContainer component={Paper}>
