@@ -12,13 +12,18 @@ function Topbar() {
     <AppBar position="static">
       <CssBaseline />
       <Toolbar className="toolbarWrap">
-        <Typography variant="h6">Real-time</Typography>
+        <Typography variant="h6">Dashboard.io</Typography>
         <div className="TopbarContainer">
-          <Button component={Link} to="/" color="secondary">
+          <Button component={Link} variant="contained" to="/" color="secondary">
             {" Home "}
           </Button>
-          <Button component={Link} to="/config" color="secondary">
-            {" config "}
+          <Button
+            component={Link}
+            variant="contained"
+            to="/config"
+            color="secondary"
+          >
+            {" Configuration "}
           </Button>
         </div>
       </Toolbar>

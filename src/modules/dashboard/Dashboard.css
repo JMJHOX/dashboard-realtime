@@ -2,9 +2,16 @@
     display: flex;
     height: 100%;
     padding: 25px;
+    flex-direction: row;
 }
 
 .left-page {
     flex: 4;
   
 }
+
+@media (max-width: 600px) {
+    .container {
+        flex-direction: column;
+    }
+  }

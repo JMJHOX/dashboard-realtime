@@ -1,34 +1,35 @@
 import { Button } from "@mui/material";
 import Box from "@mui/material/Box";
-import { useEffect, useState } from "react";
+import axios from "axios";
+import { useCallback } from "react";
 import { useDispatch } from "react-redux";
-import { useAxiosGet } from "../../../commons/services/ConsumeService";
 import { addData } from "../../../commons/store/actions/dataActions";
 import "./Sidebar.css";
-const FetchData = () => {
-  useAxiosGet(
-    "https://zoo-animal-api.herokuapp.com/animals/rand"
-  );
-}
 
 function Sidebar() {
-  const [toggle, setToggle] = useState(false);
-
-
-  const  data: any = useAxiosGet(
-    "https://zoo-animal-api.herokuapp.com/animals/rand"
-  );
-  let dataApi = data;
-
-  useEffect(() => {
-  //  FetchData();
-    // initialFetch
-  }, [toggle]);
-
+  const urlFetch = "https://zoo-animal-api.herokuapp.com/animals/rand";
   const dispatch = useDispatch();
 
+  const onItemClick = useCallback(() => {
+    fetchDataReload();
+  }, []);
+
+  const fetchDataReload = () => {
+    axios.get(urlFetch).then((response) => {
+      const dataApi = response;
+      const apiData: any = {
+        name: dataApi.data.name,
+        calories: dataApi.data.latin_name,
+        fat: dataApi.data.lifespan,
+        carbs: dataApi.data.diet,
+        protein: dataApi.data.id,
+      };
+      dispatch(addData(apiData));
+    });
+  };
+
   return (
-    <div style={{ width: "20%" }}>
+    <div  className="containerSide">
       <Box
         component="span"
         sx={{
@@ -56,21 +57,19 @@ function Sidebar() {
                   <Button
                     variant="contained"
                     onClick={() => {
-                      const apiData: any = {
-                        name: dataApi.data?.name || "",
-                        calories: dataApi.data?.latin_name || "",
-                        fat: dataApi.data?.lifespan || "",
-                        carbs: dataApi.data?.diet || "",
-                        protein: dataApi.data?.id || "",
-                      };
-                      setToggle((prevState: any) => !prevState);
-                      console.log("sideBarApi", apiData);
-                      dispatch(addData(apiData));
+                      onItemClick();
                     }}
                   >
                     Update Dashboard
                   </Button>
-                  <Button variant="contained">Remove Dashboard</Button>
+                  <Button
+                    variant="contained"
+                    onClick={() => {
+                      onItemClick();
+                    }}
+                  >
+                    Remove Dashboard
+                  </Button>
                 </div>
               </h3>
             </div>

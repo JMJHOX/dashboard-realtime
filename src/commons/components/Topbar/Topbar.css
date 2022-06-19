@@ -1,8 +1,11 @@
 .TopbarContainer {
-    display: flex;
+  display: flex;
 }
-.toolbarWrap{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+.TopbarContainer Button {
+  margin: 1000px;
+}
+.toolbarWrap {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
