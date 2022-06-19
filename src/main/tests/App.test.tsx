@@ -14,13 +14,12 @@ describe("With React Testing Library", () => {
 
   it("renders learn react link", () => {
     store = mockStore(initialState);
-    const { getByText } = render(
+    render(
       <Provider store={store}>
         <App />
       </Provider>
     );
-   // const spy = jest.spyOn(redux, 'useSelector')
-  //  spy.mockReturnValue({ apidata: [{}] })
+
    
     const linkElement = screen.getByText(/Dashboard.io/i);
     expect(linkElement).toBeInTheDocument();

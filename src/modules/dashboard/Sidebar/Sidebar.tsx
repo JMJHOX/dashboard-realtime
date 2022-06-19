@@ -8,28 +8,29 @@ import "./Sidebar.css";
 
 function Sidebar() {
   const urlFetch = "https://zoo-animal-api.herokuapp.com/animals/rand";
+
   const dispatch = useDispatch();
-
   const onItemClick = useCallback(() => {
-    fetchDataReload();
-  }, []);
+    const fetchDataReload = () => {
+      axios.get(urlFetch).then((response) => {
+        const dataApi = response;
+        const apiData: any = {
+          name: dataApi.data.name,
+          calories: dataApi.data.latin_name,
+          fat: dataApi.data.lifespan,
+          carbs: dataApi.data.diet,
+          protein: dataApi.data.id,
+        };
 
-  const fetchDataReload = () => {
-    axios.get(urlFetch).then((response) => {
-      const dataApi = response;
-      const apiData: any = {
-        name: dataApi.data.name,
-        calories: dataApi.data.latin_name,
-        fat: dataApi.data.lifespan,
-        carbs: dataApi.data.diet,
-        protein: dataApi.data.id,
-      };
-      dispatch(addData(apiData));
-    });
-  };
+        dispatch(addData(apiData));
+      });
+    };
+
+    fetchDataReload();
+  }, [dispatch]);
 
   return (
-    <div  className="containerSide">
+    <div className="containerSide">
       <Box
         component="span"
         sx={{
@@ -62,14 +63,7 @@ function Sidebar() {
                   >
                     Update Dashboard
                   </Button>
-                  <Button
-                    variant="contained"
-                    onClick={() => {
-                      onItemClick();
-                    }}
-                  >
-                    Remove Dashboard
-                  </Button>
+                  <Button variant="contained">Remove Dashboard</Button>
                 </div>
               </h3>
             </div>

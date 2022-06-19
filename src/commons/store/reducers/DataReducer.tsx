@@ -1,4 +1,4 @@
-import { addData, rmData } from "../actions/dataActions";
+import { addData } from "../actions/dataActions";
 import { createReducer } from "@reduxjs/toolkit";
 
 const initialState = {
